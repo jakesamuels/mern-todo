@@ -9,12 +9,16 @@ const Header = ({ onTaskAdded }) => {
   };
 
   return (
-    <header>
+    <header
+      style={{
+        marginBottom: formOpen ? "10rem" : "4rem",
+      }}
+    >
       <h1>Stay Organized, Stay Ahead</h1>
       {!formOpen ? (
         <button onClick={handleClick}>Add Task</button>
       ) : (
-        <TaskForm onTaskAdded={onTaskAdded} />
+        <TaskForm onTaskAdded={onTaskAdded} onCloseMenu={handleClick} />
       )}
     </header>
   );
