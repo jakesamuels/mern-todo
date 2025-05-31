@@ -32,3 +32,15 @@ export const createTask = async (formData) => {
     throw err;
   }
 };
+
+// Delete task
+export const deleteTask = async (id) => {
+  try {
+    await axios.delete(`${BASE_URL}/${id}`);
+
+    console.log("Task deleted");
+  } catch (err) {
+    console.error("Error deleting task:", err);
+    throw err;
+  }
+};
