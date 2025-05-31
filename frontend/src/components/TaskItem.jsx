@@ -9,14 +9,20 @@ const TaskItem = ({ task }) => {
 
   return (
     <li className="task-item">
-      <span className="task-item__title">{task.title}</span>
-      <p className="task-item__description">{task.description}</p>
-      <input
-        type="checkbox"
-        name="completed"
-        value={task.completed}
-        onChange={handleChange}
-      />
+      <div>
+        <span className="task-item__title">{task.title}</span>
+        <p className="task-item__description">{task.description}</p>
+        <label htmlFor="completed" className="label__checkbox">
+          <input
+            type="checkbox"
+            name="completed"
+            id="completed"
+            value={task.completed}
+            onChange={handleChange}
+          />
+          Mark as complete
+        </label>
+      </div>
 
       <div>
         <button>Edit</button>
