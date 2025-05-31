@@ -80,7 +80,7 @@ form label {
 }
 
 form label small {
-  color: rgb(187, 186, 186);
+  color: #bbbaba;
 }
 
 form input {
@@ -95,7 +95,7 @@ textarea {
   font-size: 1rem;
   margin-bottom: 1rem;
   outline: none;
-  border: 1px solid rgb(187, 186, 186);
+  border: 1px solid #bbbaba;
   border-radius: 0.25rem;
 }
 
@@ -105,7 +105,7 @@ form textarea {
 
 form input::placeholder,
 textarea::placeholder {
-  color: rgb(187, 186, 186);
+  color: #bbbaba;
 }
 
 /* ==========
@@ -125,7 +125,7 @@ ul.task-list {
 li.task-item {
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid rgb(187, 186, 186);
+  border-bottom: 1px solid #bbbaba;
   padding: 1rem;
 }
 
@@ -137,7 +137,7 @@ li.task-item {
 }
 
 .task-item__description {
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 input[type="checkbox"] {
@@ -149,5 +149,26 @@ label.label__checkbox {
   align-items: center;
   font-size: 0.75rem;
   font-weight: 500;
-  color: rgb(187, 186, 186);
+  color: #bbbaba;
+}
+
+.task-item__buttons {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.task-item__buttons button {
+  background: none;
+  border: none;
+  outline: none;
+  font-size: 1.25rem;
+}
+
+button.btn__edit-item {
+  color: #bbbaba;
+}
+
+button.btn__delete-item {
+  color: #dc3545;
 }
