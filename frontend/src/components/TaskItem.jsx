@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { FaRegEdit, FaRegTrashAlt } from "react-icons/fa";
 
 const TaskItem = ({ task }) => {
   const [completed, setCompleted] = useState(task.completed);
@@ -24,9 +25,13 @@ const TaskItem = ({ task }) => {
         </label>
       </div>
 
-      <div>
-        <button>Edit</button>
-        <button>Delete</button>
+      <div className="task-item__buttons">
+        <button className="btn__edit-item">
+          <FaRegEdit />
+        </button>
+        <button className="btn__delete-item">
+          <FaRegTrashAlt />
+        </button>
       </div>
     </li>
   );
