@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { createTask } from "../utils/utils";
 
-const TaskForm = ({ onTaskAdded, onCloseMenu }) => {
+import CTAButton from "./CTAButton";
+
+const TaskForm = ({ onTaskAdded, onCloseMenu, setFormOpen }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,11 +25,15 @@ const TaskForm = ({ onTaskAdded, onCloseMenu }) => {
       description,
     };
 
+    setSubmitting(true);
+
     const newTask = await createTask(formData);
     onTaskAdded(newTask);
 
     setTitle("");
     setDescription("");
+    setSubmitting(false);
+    setFormOpen(false);
   };
 
   return (
@@ -59,7 +66,9 @@ const TaskForm = ({ onTaskAdded, onCloseMenu }) => {
         placeholder="Add details, steps, or reminders..."
       ></textarea>
 
-      <button type="submit">Add Task</button>
+      <CTAButton className="btn__submit-form" bgColor="#edecec">
+        {submitting ? "Adding task..." : "Add Task"}
+      </CTAButton>
     </form>
   );
 };
