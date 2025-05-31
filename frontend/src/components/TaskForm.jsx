@@ -31,7 +31,7 @@ const TaskForm = ({ onTaskAdded, onCloseMenu }) => {
 
   return (
     <form className="form" onSubmit={handleSubmit}>
-      <button class="btn__close-form" onClick={onCloseMenu}>
+      <button type="button" className="btn__close-form" onClick={onCloseMenu}>
         X
       </button>
       <label htmlFor="form__title">Task:</label>
@@ -43,6 +43,7 @@ const TaskForm = ({ onTaskAdded, onCloseMenu }) => {
         value={title}
         onChange={handleChange}
         placeholder="What do you need to get done?"
+        required
       />
 
       <label htmlFor="form__description">
