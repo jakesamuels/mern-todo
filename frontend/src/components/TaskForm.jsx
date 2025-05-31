@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { createTask } from "../utils/utils";
 
-const TaskForm = ({ onTaskAdded }) => {
+const TaskForm = ({ onTaskAdded, onCloseMenu }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
@@ -31,6 +31,9 @@ const TaskForm = ({ onTaskAdded }) => {
 
   return (
     <form className="form" onSubmit={handleSubmit}>
+      <button class="btn__close-form" onClick={onCloseMenu}>
+        X
+      </button>
       <label htmlFor="form__title">Task:</label>
       <input
         type="text"
@@ -39,17 +42,21 @@ const TaskForm = ({ onTaskAdded }) => {
         className="form__title"
         value={title}
         onChange={handleChange}
+        placeholder="What do you need to get done?"
       />
 
-      <label htmlFor="form__description">Description:</label>
-      <input
-        type="text"
+      <label htmlFor="form__description">
+        Description: <small>(optional)</small>
+      </label>
+
+      <textarea
         id="form__description"
         name="description"
         className="form__description"
         value={description}
         onChange={handleChange}
-      />
+        placeholder="Add details, steps, or reminders..."
+      ></textarea>
 
       <button type="submit">Add Task</button>
     </form>
