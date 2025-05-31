@@ -1,7 +1,7 @@
 import { useState } from "react";
-import axios from "axios";
+import { createTask } from "../utils/utils";
 
-const TaskForm = () => {
+const TaskForm = ({ onTaskAdded }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
@@ -14,10 +14,19 @@ const TaskForm = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log("Submitting form");
+    const formData = {
+      title,
+      description,
+    };
+
+    const newTask = await createTask(formData);
+    onTaskAdded(newTask);
+
+    setTitle("");
+    setDescription("");
   };
 
   return (
