@@ -1,0 +1,107 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+main {
+  background-color: rgb(237, 236, 236);
+}
+
+ul {
+  list-style-type: none;
+}
+
+/* ==========
+ HEADER
+ ========== */
+header {
+  background-color: rgba(0, 0, 0, 0.35);
+  min-height: 300px;
+  position: relative;
+  padding-top: 3rem;
+  /* margin-bottom: 8rem; */
+  background-image: url("./../public/header.jpg");
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: overlay;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: #fff;
+}
+
+/* ==========
+ FORM
+ ========== */
+form {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 2rem 1rem;
+  width: 87.2%;
+  margin: 0 auto;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 0.25rem;
+  box-shadow: 1px 4px 20px 5px rgba(0, 0, 0, 0.15);
+}
+
+button.btn__close-form {
+  background: none;
+  border: none;
+  width: fit-content;
+  font-size: 1.125rem;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+form label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+form label small {
+  color: rgb(187, 186, 186);
+}
+
+form input {
+  min-height: 2rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  padding: 0.3125rem 0.5rem;
+}
+
+form input,
+textarea {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  outline: none;
+  border: 1px solid rgb(187, 186, 186);
+  border-radius: 0.25rem;
+}
+
+form textarea {
+  padding: 0.65rem 0.5rem;
+}
+
+form input::placeholder,
+textarea::placeholder {
+  color: rgb(187, 186, 186);
+}
