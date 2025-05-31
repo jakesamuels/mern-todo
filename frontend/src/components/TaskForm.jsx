@@ -2,6 +2,7 @@ import { useState } from "react";
 import { createTask } from "../utils/utils";
 
 import CTAButton from "./CTAButton";
+import DotLoader from "./BeatLoader";
 
 const TaskForm = ({ onTaskAdded, onCloseMenu, setFormOpen }) => {
   const [title, setTitle] = useState("");
@@ -66,8 +67,12 @@ const TaskForm = ({ onTaskAdded, onCloseMenu, setFormOpen }) => {
         placeholder="Add details, steps, or reminders..."
       ></textarea>
 
-      <CTAButton className="btn__submit-form" bgColor="#edecec">
-        {submitting ? "Adding task..." : "Add Task"}
+      <CTAButton
+        className="btn__submit-form"
+        bgColor="#edecec"
+        disabled={submitting}
+      >
+        {submitting ? <DotLoader bool={submitting} /> : "Add Task"}
       </CTAButton>
     </form>
   );

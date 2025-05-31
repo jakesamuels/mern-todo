@@ -1,10 +1,10 @@
 import TaskItem from "./TaskItem";
 
-const TaskList = ({ tasks }) => {
+const TaskList = ({ tasks, onTaskDeleted }) => {
   return (
     <ul className="task-list">
       {tasks.map((task) => (
-        <TaskItem key={task._id} task={task} />
+        <TaskItem key={task._id} task={task} onTaskDeleted={onTaskDeleted} />
       ))}
     </ul>
   );
