@@ -29,6 +29,12 @@ function App() {
     setTasks((prevTasks) => [...prevTasks, newTask]);
   };
 
+  const handleTaskDeleted = async (id) => {
+    const filteredTasks = tasks.filter((task) => task._id !== id);
+
+    setTasks(filteredTasks);
+  };
+
   return (
     <main className="App">
       <Header onTaskAdded={handleTaskAdded} />
@@ -38,7 +44,7 @@ function App() {
       ) : error ? (
         <p>{error}</p>
       ) : (
-        <TaskList tasks={tasks} />
+        <TaskList tasks={tasks} onTaskDeleted={handleTaskDeleted} />
       )}
     </main>
   );
