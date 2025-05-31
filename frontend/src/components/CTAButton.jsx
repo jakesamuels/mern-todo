@@ -1,6 +1,6 @@
 import React from "react";
 
-const CTAButton = ({ children, className, handler, bgColor }) => {
+const CTAButton = ({ children, className, handler, bgColor, disabled }) => {
   return (
     <button
       onClick={handler}
@@ -8,6 +8,7 @@ const CTAButton = ({ children, className, handler, bgColor }) => {
       style={{
         background: bgColor,
       }}
+      disabled={disabled}
     >
       {children}
     </button>
