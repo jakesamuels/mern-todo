@@ -16,6 +16,7 @@ body {
 main {
   background-color: #edecec;
   padding-bottom: 4rem;
+  min-height: 100vh;
 }
 
 button.btn__cta {
@@ -181,4 +182,15 @@ button.btn__edit-item {
 
 button.btn__delete-item {
   color: #dc3545;
+}
+
+.rotation {
+  font-size: 1rem;
+  animation: rotateSpinner 1s infinite;
+}
+
+@keyframes rotateSpinner {
+  100% {
+    transform: rotate(360deg);
+  }
 }
