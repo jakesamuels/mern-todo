@@ -4,6 +4,7 @@ import { fetchAllTasks } from "./utils/utils.js";
 import Header from "./components/Header.jsx";
 import TaskList from "./components/TaskList.jsx";
 import UpdateTaskModal from "./components/UpdateTaskModal.jsx";
+import BouncingLoader from "./components/BouncingLoader.jsx";
 
 function App() {
   const [tasks, setTasks] = useState([]);
@@ -12,6 +13,7 @@ function App() {
   const [error, setError] = useState("");
 
   const fetchData = async () => {
+    setLoading(true);
     try {
       const tasks = await fetchAllTasks();
       setTasks(tasks);
@@ -36,9 +38,7 @@ function App() {
       <Header onTaskAdded={handleRerender} />
 
       {loading ? (
-        <p>Loading...</p>
-      ) : error ? (
-        <p>{error}</p>
+        <BouncingLoader bool={loading} />
       ) : (
         <TaskList
           tasks={tasks}
