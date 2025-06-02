@@ -34,13 +34,16 @@ const TaskItem = ({ task, onTaskDeleted }) => {
         <span className="task-item__title">{task.title}</span>
         <p className="task-item__description">{task.description}</p>
         <label htmlFor="completed" className="label__checkbox">
-          <input
-            type="checkbox"
-            name="completed"
-            id="completed"
-            checked={completed}
-            onChange={handleChangeCompleted}
-          />
+          <div className="checkbox-wrapper">
+            <input
+              type="checkbox"
+              name="completed"
+              id="completed"
+              checked={completed}
+              onChange={handleChangeCompleted}
+              className="marker"
+            />
+          </div>
           Mark as complete
         </label>
       </div>
