@@ -1,12 +1,45 @@
 import { useState } from "react";
-import TaskForm from "./TaskForm";
+import { createTask } from "../utils/utils";
+
+import Form from "./Form";
 import CTAButton from "./CTAButton";
 
 const Header = ({ onTaskAdded }) => {
   const [formOpen, setFormOpen] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
 
   const handleClick = () => {
     setFormOpen((prev) => !prev);
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    if (name === "title") {
+      setTitle(value);
+    } else {
+      setDescription(value);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const formData = {
+      title,
+      description,
+    };
+
+    setSubmitting(true);
+
+    const newTask = await createTask(formData);
+    onTaskAdded(newTask);
+
+    setTitle("");
+    setDescription("");
+    setSubmitting(false);
+    setFormOpen(false);
   };
 
   return (
@@ -21,10 +54,15 @@ const Header = ({ onTaskAdded }) => {
           Add Task
         </CTAButton>
       ) : (
-        <TaskForm
+        <Form
+          title={title}
+          description={description}
           onTaskAdded={onTaskAdded}
-          onCloseMenu={handleClick}
           setFormOpen={setFormOpen}
+          handleClick={handleClick}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+          submitting={submitting}
         />
       )}
     </header>

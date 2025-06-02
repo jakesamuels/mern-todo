@@ -1,19 +1,21 @@
 import { useState } from "react";
 import { deleteTask, updateTask } from "../utils/utils";
+import { useTaskContext } from "../context/TaskContext";
 
 import { FaRegEdit, FaRegTrashAlt } from "react-icons/fa";
 import Spinner from "./Spinner";
 
-const TaskItem = ({ task, onTaskDeleted }) => {
+const TaskItem = ({ task, setModalOpen, onTaskDeleted }) => {
   const [completed, setCompleted] = useState(task.completed);
   const [deleting, setDeleting] = useState(false);
+  const { setCurrentTask } = useTaskContext();
 
   const handleChangeCompleted = async () => {
     try {
       const newCompletedStatus = !completed;
       setCompleted(newCompletedStatus);
 
-      await updateTask(task._id, { completed: newCompletedStatus });
+      await updateTask(task.id, { completed: newCompletedStatus });
     } catch (err) {
       console.error("Error updating task:", err);
     }
@@ -49,7 +51,13 @@ const TaskItem = ({ task, onTaskDeleted }) => {
       </div>
 
       <div className="task-item__buttons">
-        <button className="btn__edit-item">
+        <button
+          className="btn__edit-item"
+          onClick={() => {
+            setCurrentTask(task);
+            setModalOpen(true);
+          }}
+        >
           <FaRegEdit />
         </button>
         <button
