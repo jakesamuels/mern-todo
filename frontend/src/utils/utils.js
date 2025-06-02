@@ -53,7 +53,6 @@ export const updateTask = async (id, formData) => {
     });
 
     const updatedTaskFromServer = await response.data.task;
-    console.log(updatedTaskFromServer);
     return updatedTaskFromServer;
   } catch (err) {
     console.error("Error updating task:", err);
