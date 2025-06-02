@@ -1,19 +1,16 @@
-import { CSSProperties, useState } from "react";
+import { CSSProperties } from "react";
 import { BeatLoader } from "react-spinners";
 
 const override: CSSProperties = {
   display: "block",
   margin: "0 auto",
-  //   borderColor: "#dc3545",
 };
 
 const DotLoader = ({ bool }) => {
-  const [color, setColor] = useState("#000");
-
   return (
     <div className="sweet-loading">
       <BeatLoader
-        color={color}
+        color="#000"
         loading={bool}
         cssOverride={override}
         size={8}
