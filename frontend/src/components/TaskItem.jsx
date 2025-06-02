@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { deleteTask } from "../utils/utils";
+import { deleteTask, updateTask } from "../utils/utils";
 
 import { FaRegEdit, FaRegTrashAlt } from "react-icons/fa";
 import Spinner from "./Spinner";
@@ -8,8 +8,15 @@ const TaskItem = ({ task, onTaskDeleted }) => {
   const [completed, setCompleted] = useState(task.completed);
   const [deleting, setDeleting] = useState(false);
 
-  const handleChange = () => {
-    setCompleted(!completed);
+  const handleChangeCompleted = async () => {
+    try {
+      const newCompletedStatus = !completed;
+      setCompleted(newCompletedStatus);
+
+      await updateTask(task._id, { completed: newCompletedStatus });
+    } catch (err) {
+      console.error("Error updating task:", err);
+    }
   };
 
   const handleDelete = async (id) => {
@@ -31,8 +38,8 @@ const TaskItem = ({ task, onTaskDeleted }) => {
             type="checkbox"
             name="completed"
             id="completed"
-            value={task.completed}
-            onChange={handleChange}
+            checked={completed}
+            onChange={handleChangeCompleted}
           />
           Mark as complete
         </label>

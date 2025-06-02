@@ -37,10 +37,26 @@ export const createTask = async (formData) => {
 export const deleteTask = async (id) => {
   try {
     await axios.delete(`${BASE_URL}/${id}`);
-
-    console.log("Task deleted");
   } catch (err) {
     console.error("Error deleting task:", err);
+    throw err;
+  }
+};
+
+// Update task
+export const updateTask = async (id, formData) => {
+  try {
+    const response = await axios({
+      method: "PUT",
+      data: formData,
+      url: `${BASE_URL}/${id}`,
+    });
+
+    const updatedTaskFromServer = await response.data.task;
+    console.log(updatedTaskFromServer);
+    return updatedTaskFromServer;
+  } catch (err) {
+    console.error("Error updating task:", err);
     throw err;
   }
 };
