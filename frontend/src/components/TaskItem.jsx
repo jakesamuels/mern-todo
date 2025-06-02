@@ -10,12 +10,12 @@ const TaskItem = ({ task, setModalOpen, onTaskDeleted }) => {
   const [deleting, setDeleting] = useState(false);
   const { setCurrentTask } = useTaskContext();
 
-  const handleChangeCompleted = async () => {
+  const handleCompletedStatus = async () => {
     try {
       const newCompletedStatus = !completed;
       setCompleted(newCompletedStatus);
 
-      await updateTask(task.id, { completed: newCompletedStatus });
+      await updateTask(task._id, { completed: newCompletedStatus });
     } catch (err) {
       console.error("Error updating task:", err);
     }
@@ -42,7 +42,7 @@ const TaskItem = ({ task, setModalOpen, onTaskDeleted }) => {
               name="completed"
               id="completed"
               checked={completed}
-              onChange={handleChangeCompleted}
+              onChange={handleCompletedStatus}
               className="marker"
             />
           </div>
