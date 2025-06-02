@@ -3,48 +3,55 @@ import { fetchAllTasks } from "./utils/utils.js";
 
 import Header from "./components/Header.jsx";
 import TaskList from "./components/TaskList.jsx";
+import UpdateTaskModal from "./components/UpdateTaskModal.jsx";
 
 function App() {
   const [tasks, setTasks] = useState([]);
+  const [modalOpen, setModalOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const tasks = await fetchAllTasks();
-        setTasks(tasks);
-        setLoading(false);
-      } catch (err) {
-        console.error(err);
-        setError("Failed to fetch tasks.");
-        setLoading(false);
-      }
-    };
+  const fetchData = async () => {
+    try {
+      const tasks = await fetchAllTasks();
+      setTasks(tasks);
+      setLoading(false);
+    } catch (err) {
+      console.error(err);
+      setError("Failed to fetch tasks.");
+      setLoading(false);
+    }
+  };
 
+  useEffect(() => {
     fetchData();
   }, []);
 
-  const handleTaskAdded = async (newTask) => {
-    setTasks((prevTasks) => [...prevTasks, newTask]);
-  };
-
-  const handleTaskDeleted = async (id) => {
-    const filteredTasks = tasks.filter((task) => task._id !== id);
-
-    setTasks(filteredTasks);
+  const handleRerender = () => {
+    fetchData();
   };
 
   return (
     <main className="App">
-      <Header onTaskAdded={handleTaskAdded} />
+      <Header onTaskAdded={handleRerender} />
 
       {loading ? (
         <p>Loading...</p>
       ) : error ? (
         <p>{error}</p>
       ) : (
-        <TaskList tasks={tasks} onTaskDeleted={handleTaskDeleted} />
+        <TaskList
+          tasks={tasks}
+          modalOpen={modalOpen}
+          setModalOpen={setModalOpen}
+          onTaskDeleted={handleRerender}
+        />
+      )}
+      {modalOpen && (
+        <UpdateTaskModal
+          setModalOpen={setModalOpen}
+          onTaskUpdated={handleRerender}
+        />
       )}
     </main>
   );
