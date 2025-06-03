@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { fetchAllTasks } from "./utils/utils.js";
+import { toast } from "react-toastify";
 
 import Header from "./components/Header.jsx";
 import TaskList from "./components/TaskList.jsx";
@@ -10,17 +11,16 @@ function App() {
   const [tasks, setTasks] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
 
   const fetchData = async () => {
     setLoading(true);
+
     try {
       const tasks = await fetchAllTasks();
       setTasks(tasks);
-      setLoading(false);
     } catch (err) {
-      console.error(err);
-      setError("Failed to fetch tasks.");
+      toast.error(err?.message || "Failed to fetch tasks.");
+    } finally {
       setLoading(false);
     }
   };

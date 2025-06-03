@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { deleteTask, updateTask } from "../utils/utils";
 import { useTaskContext } from "../context/TaskContext";
+import { toast } from "react-toastify";
 
 import { FaRegEdit, FaRegTrashAlt } from "react-icons/fa";
 import Spinner from "./Spinner";
@@ -11,21 +12,32 @@ const TaskItem = ({ task, setModalOpen, onTaskDeleted }) => {
   const { setCurrentTask } = useTaskContext();
 
   const handleCompletedStatus = async () => {
-    try {
-      const newCompletedStatus = !completed;
-      setCompleted(newCompletedStatus);
+    const newCompletedStatus = !completed;
+    setCompleted(newCompletedStatus);
 
+    try {
       await updateTask(task._id, { completed: newCompletedStatus });
-    } catch (err) {
-      console.error("Error updating task:", err);
+    } catch (error) {
+      setCompleted(!newCompletedStatus); // rollback
+      toast.error(
+        error?.message || "An error occurred while changing the status."
+      );
     }
   };
 
   const handleDelete = async (id) => {
-    if (window.confirm("Are you sure?")) {
-      setDeleting(true);
+    const confirmed = window.confirm("Are you sure?");
+
+    if (!confirmed) return;
+
+    setDeleting(true);
+
+    try {
       await deleteTask(id);
-      onTaskDeleted(id);
+      onTaskDeleted();
+    } catch (error) {
+      toast.error(error?.message || "Failed to delete the task.");
+    } finally {
       setDeleting(false);
     }
   };

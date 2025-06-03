@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { createTask } from "../utils/utils";
+import { toast } from "react-toastify";
 
 import Form from "./Form";
 import CTAButton from "./CTAButton";
@@ -25,21 +26,25 @@ const Header = ({ onTaskAdded }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const formData = {
-      title,
-      description,
-    };
-
     setSubmitting(true);
 
-    const newTask = await createTask(formData);
-    onTaskAdded(newTask);
+    try {
+      const formData = {
+        title,
+        description,
+      };
 
-    setTitle("");
-    setDescription("");
-    setSubmitting(false);
-    setFormOpen(false);
+      const newTask = await createTask(formData);
+      onTaskAdded(newTask);
+
+      setTitle("");
+      setDescription("");
+      setFormOpen(false);
+    } catch (error) {
+      toast.error(error?.message || "Error creating the task.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
