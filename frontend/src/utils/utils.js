@@ -11,7 +11,7 @@ export const fetchAllTasks = async () => {
     return data;
   } catch (err) {
     console.error("Error fetching tasks:", err);
-    throw err;
+    throw new Error("Server error fetching tasks");
   }
 };
 
@@ -29,7 +29,7 @@ export const createTask = async (formData) => {
     return newTaskFromServer;
   } catch (err) {
     console.error("Error creating task:", err);
-    throw err;
+    throw new Error("Server error creating tasks");
   }
 };
 
@@ -39,7 +39,7 @@ export const deleteTask = async (id) => {
     await axios.delete(`${BASE_URL}/${id}`);
   } catch (err) {
     console.error("Error deleting task:", err);
-    throw err;
+    throw new Error("Server error deleting tasks");
   }
 };
 
@@ -56,6 +56,6 @@ export const updateTask = async (id, formData) => {
     return updatedTaskFromServer;
   } catch (err) {
     console.error("Error updating task:", err);
-    throw err;
+    throw new Error("Server error updating tasks");
   }
 };
