@@ -84,12 +84,12 @@ button.btn__close-form {
   position: absolute;
   top: 1rem;
   right: 1rem;
-  font-weight: bold;
+  font-weight: 700;
   cursor: pointer;
 }
 
 form label {
-  font-weight: bold;
+  font-weight: 500;
   margin-bottom: 0.5rem;
 }
 
@@ -101,7 +101,6 @@ form input {
   min-height: 2rem;
   margin-bottom: 1rem;
   font-size: 1rem;
-  padding: 0.3125rem 0.5rem;
 }
 
 form input,
@@ -111,10 +110,7 @@ textarea {
   outline: none;
   border: 1px solid #bbbaba;
   border-radius: 0.25rem;
-}
-
-form textarea {
-  padding: 0.65rem 0.5rem;
+  padding: 0.5rem 0.5rem;
 }
 
 form input::placeholder,
@@ -146,7 +142,7 @@ li.task-item {
   display: block;
   font-size: 1.25rem;
   margin-bottom: 0.5rem;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .task-item__description {
@@ -266,4 +262,143 @@ form.modal {
   top: 50%;
   left: 50%;
   transform: translate(-50% -70%);
+}
+
+/* ==================== 
+  TABLET STYLES
+  ==================== */
+@media (min-width: 48rem) {
+  /* ==========
+  HEADER
+  ========== */
+  header {
+    background-color: rgba(0, 0, 0, 0.35);
+    min-height: 25rem;
+    padding: 4rem 1rem 0;
+  }
+
+  h1 {
+    font-size: 3.5rem;
+    margin-bottom: 3rem;
+  }
+
+  /* ==========
+  FORM
+  ========== */
+  form {
+    display: flex;
+    padding: 3rem 2rem;
+    width: 89.7%;
+    max-width: 43.0625rem;
+    box-shadow: 1px 4px 20px 5px rgba(0, 0, 0, 0.15);
+  }
+
+  button.btn__close-form {
+    font-size: 1.25rem;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+
+  form label {
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+  }
+
+  form input {
+    min-height: 2.5rem;
+  }
+
+  form input,
+  textarea {
+    font-size: 1.125rem;
+    margin-bottom: 1.5rem;
+    padding: 0.5rem 0.5rem;
+  }
+
+  /* ==========
+  TASK LIST
+  ========== */
+  ul.task-list {
+    width: 89.7%;
+    max-width: 43.0625rem;
+  }
+
+  /* ==========
+  TASK ITEM
+  ========== */
+  li.task-item {
+    border-bottom: 2px solid #bbbaba;
+    padding: 1.5rem;
+  }
+
+  .task-item__title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .task-item__description {
+    margin-bottom: 1.5rem;
+  }
+
+  label.label__checkbox {
+    font-size: 0.9rem;
+  }
+
+  .task-item__buttons {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .task-item__buttons button {
+    font-size: 1.5rem;
+  }
+
+  /* CHECKBOX */
+  .checkbox-wrapper .marker {
+    width: 40px;
+  }
+
+  .checkbox-wrapper .marker::after {
+    left: 4px;
+  }
+
+  .checkbox-wrapper .marker:checked::after {
+    left: 22px;
+  }
+
+  /* ==========
+  UPDATE TASK MODAL
+  ========== */
+  .modal-container {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    z-index: 1000;
+    margin: 0 !important;
+  }
+
+  form.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% -70%);
+  }
+}
+
+/* ==================== 
+  DESKTOP STYLES
+  ==================== */
+@media (min-width: 90rem) {
+  /* ==========
+  
+   ========== */
+  h1 {
+    font-size: 3.75rem;
+  }
 }
