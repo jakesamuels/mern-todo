@@ -53,7 +53,9 @@ const Header = ({ onTaskAdded }) => {
         marginBottom: formOpen ? "12rem" : "4rem",
       }}
     >
-      <h1>Stay Organized, Stay Ahead</h1>
+      <h1>
+        Stay Organized, <br /> Stay Ahead
+      </h1>
       {!formOpen ? (
         <CTAButton handler={handleClick} bgColor="#fff">
           Add Task
