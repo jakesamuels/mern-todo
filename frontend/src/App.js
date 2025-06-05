@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import Header from "./components/Header.jsx";
 import TaskList from "./components/TaskList.jsx";
 import UpdateTaskModal from "./components/UpdateTaskModal.jsx";
-import BouncingLoader from "./components/BouncingLoader.jsx";
+import Loading from "./components/Loading.jsx";
 
 function App() {
   const [tasks, setTasks] = useState([]);
@@ -38,7 +38,7 @@ function App() {
       <Header onTaskAdded={handleRerender} />
 
       {loading ? (
-        <BouncingLoader bool={loading} />
+        <Loading bool={loading} />
       ) : (
         <TaskList
           tasks={tasks}

@@ -30,6 +30,7 @@ const UpdateTaskModal = ({ setModalOpen, onTaskUpdated }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setUpdatting(true);
 
     try {
       const formData = {
@@ -37,8 +38,6 @@ const UpdateTaskModal = ({ setModalOpen, onTaskUpdated }) => {
         title: updatedTitle,
         description: updatedDescription,
       };
-
-      setUpdatting(true);
 
       const updatedTask = await updateTask(currentTask._id, formData);
 

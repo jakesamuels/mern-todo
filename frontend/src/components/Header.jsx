@@ -69,7 +69,7 @@ const Header = ({ onTaskAdded }) => {
           handleClick={handleClick}
           handleChange={handleChange}
           handleSubmit={handleSubmit}
-          submitting={submitting}
+          bool={submitting}
         />
       )}
     </header>

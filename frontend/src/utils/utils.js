@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:8000/api/tasks";
+const BASE_URL =
+  "https://mern-todo-nrzh.onrender.com/api/tasks" ||
+  "http://localhost:8000/api/tasks";
 
 // Fetch all tasks
 export const fetchAllTasks = async () => {
