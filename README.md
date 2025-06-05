@@ -35,7 +35,6 @@ This is a full-stack To-Do List application built using the **MERN stack** (Mong
 
 The project is divided into two main directories:
 
-```
 mern-todo/
 ├── backend/
 │ ├── config/ # Database connection setup
@@ -54,7 +53,6 @@ mern-todo/
 │ └── ... # Other React files and styling
 ├── package.json
 └──
-```
 
 ## Getting Started
 
